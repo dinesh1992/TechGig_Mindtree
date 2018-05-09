@@ -1,0 +1,30 @@
+
+--Before running below queries please create and load data into tables : author_Comments,author_authority and dictionary.
+
+
+
+create table split_words  as select name as name,split(text,' ') as words from   author_Comments;
+
+
+create table tweet_word as select name as name,word from split_words LATERAL VIEW explode(words) w as word ;
+
+
+
+create table word_join as select
+tweet_word.name,tweet_word.word,dictionary.rating from tweet_word LEFT OUTER
+JOIN dictionary ON(tweet_word.word =dictionary.word);
+
+
+--Analysis:1
+
+select name,AVG(rating) as rating from word_join GROUP BY word_join.name order by rating DESC;
+
+
+--Analysis:2
+
+select name,AVG(level) as level  from author_authority GROUP BY name order by level DESC;
+
+
+--Analysis:3
+
+ select name,count(*) as rating  from author_comments where text like 'RT%' group by name order by rating desc ;

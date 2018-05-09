@@ -1,0 +1,19 @@
+-- Loading Input CSV File into author_authority 
+
+LOAD DATA LOCAL INPATH  
+'home/training/Dinesh/data/dataset1.csv' 
+INTO TABLE author_authority;  
+ 
+
+-- Loading Input CSV File into author_Comments 
+
+LOAD DATA LOCAL INPATH 
+'home/training/Dinesh/data/dataset2.csv' 
+INTO TABLE author_Comments;  
+
+
+--Loading AFFIN dictionary
+
+LOAD DATA LOCAL INPATH 
+'home/training/Dinesh/data/AFFIN.txt' 
+INTO TABLE dictionary;
