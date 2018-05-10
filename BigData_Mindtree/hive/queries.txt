@@ -17,14 +17,27 @@ JOIN dictionary ON(tweet_word.word =dictionary.word);
 
 --Analysis:1
 
-select name,AVG(rating) as rating from word_join GROUP BY word_join.name order by rating DESC;
+select name,AVG(rating) as rating from word_join GROUP BY word_join.name order by rating DESC limit 10;
 
 
 --Analysis:2
 
-select name,AVG(level) as level  from author_authority GROUP BY name order by level DESC;
+ select name,AVG(rating) as rating from word_join where rating is not null  GROUP BY name order by rating ASC limit 30;
 
 
 --Analysis:3
 
+select name,AVG(level) as level  from author_authority GROUP BY name order by level DESC limit 10;
+
+
+--Analysis 4
+
+select name,AVG(level) as level  from author_authority where level is not null  GROUP BY name order by level ASC limit 30;
+
+
+--Analysis 5
+
  select name,count(*) as rating  from author_comments where text like 'RT%' group by name order by rating desc ;
+ 
+ 
+ 
